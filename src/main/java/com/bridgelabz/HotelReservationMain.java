@@ -8,16 +8,16 @@ public class HotelReservationMain {
 		System.out.println("Welcome to Hotel Reservation Program");
 		Scanner sc = new Scanner(System.in);
 		HotelReservation hotelReservation = new HotelReservation();
-		hotelReservation.addHotel(new Hotel("Lakewood", 110));
-		hotelReservation.addHotel(new Hotel("Bridgewood", 160));
-		hotelReservation.addHotel(new Hotel("Ridgewood", 220));
-		
+		hotelReservation.addHotel(new Hotel("Lakewood", 110, 90));
+		hotelReservation.addHotel(new Hotel("Bridgewood", 160, 50));
+		hotelReservation.addHotel(new Hotel("Ridgewood", 220, 150));
+
 		System.out.println("Enter check-in date: (dd-mm=yyyy)");
-        String checkInDate = sc.nextLine();
-        System.out.println("Enter check-out date: (dd-mm=yyyy)");
-        String checkOutDate = sc.nextLine();
-        Hotel cheapestHotel = hotelReservation.getCheapestHotel(checkInDate, checkOutDate);
-        System.out.println("Cheapest Hotel: " + cheapestHotel.getName() + ", Total Cost: " + cheapestHotel.getTotalCost());
-    
+		String checkInDate = sc.nextLine();
+		System.out.println("Enter check-out date: (dd-mm=yyyy)");
+		String checkOutDate = sc.nextLine();
+		Hotel cheapestHotel = hotelReservation.getCheapestHotel(checkInDate, checkOutDate);
+		System.out.println("Cheapest Hotel: " + cheapestHotel.getName() + ", Total Cost: " + cheapestHotel.getTotalCost());
+
 	}
 }
