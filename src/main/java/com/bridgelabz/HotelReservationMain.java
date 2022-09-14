@@ -8,9 +8,9 @@ public class HotelReservationMain {
 		System.out.println("Welcome to Hotel Reservation Program");
 		Scanner sc = new Scanner(System.in);
 		HotelReservation hotelReservation = new HotelReservation();
-		hotelReservation.addHotel(new Hotel("Lakewood", 110, 90));
-		hotelReservation.addHotel(new Hotel("Bridgewood", 160, 50));
-		hotelReservation.addHotel(new Hotel("Ridgewood", 220, 150));
+		hotelReservation.addHotel(new Hotel("Lakewood", 110, 90, 3));
+		hotelReservation.addHotel(new Hotel("Bridgewood", 160, 50, 4));
+		hotelReservation.addHotel(new Hotel("Ridgewood", 220, 150, 5));
 
 		System.out.println("Enter check-in date: (dd-mm=yyyy)");
 		String checkInDate = sc.nextLine();
