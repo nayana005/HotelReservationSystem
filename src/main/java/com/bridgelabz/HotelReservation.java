@@ -14,18 +14,25 @@ public class HotelReservation {
 		return true;
 	}
 
-	Hotel getCheapestHotel(String checkInDate, String checkOutDate) {
-		LocalDate inDate = LocalDate.of(Integer.valueOf(checkInDate.substring(6, 10)), Integer.valueOf(checkInDate.substring(3, 5)), Integer.valueOf(checkInDate.substring(0, 2)));
-		LocalDate outDate = LocalDate.of(Integer.valueOf(checkOutDate.substring(6, 10)), Integer.valueOf(checkOutDate.substring(3, 5)), Integer.valueOf(checkOutDate.substring(0, 2)));
+	Hotel getCheapestBestRatedHotel(String checkInDate, String checkOutDate) {
+        LocalDate inDate = LocalDate.of(Integer.valueOf(checkInDate.substring(6, 10)), Integer.valueOf(checkInDate.substring(3, 5)), Integer.valueOf(checkInDate.substring(0, 2)));
+        LocalDate outDate = LocalDate.of(Integer.valueOf(checkOutDate.substring(6, 10)), Integer.valueOf(checkOutDate.substring(3, 5)), Integer.valueOf(checkOutDate.substring(0, 2)));
 
-		long totalNumberOfDays = getNumberOfDays(inDate, outDate);
-		long weekendDays = getNumberOfWeekendDays(inDate, outDate);
-		long weekDays = totalNumberOfDays - weekendDays;
+        long totalNumberOfDays = getNumberOfDays(inDate, outDate);
+        long weekendDays = getNumberOfWeekendDays(inDate, outDate);
+        long weekDays = totalNumberOfDays - weekendDays;
 
-		calculateTotalCost(weekDays, weekendDays);
-		Hotel cheapestHotel = hotelList.stream().sorted((x, y) -> Long.compare(x.getTotalCost(), y.getTotalCost())).collect(Collectors.toList()).get(0);
-		return cheapestHotel;
-	}
+        calculateTotalCost(weekDays, weekendDays);
+        List<Hotel> hotelList1 = hotelList.stream().sorted((x, y) -> Long.compare(x.getTotalCost(), y.getTotalCost())).collect(Collectors.toList());
+        List<Hotel> hotelList2 = hotelList1.stream().filter(x -> x.getTotalCost() == hotelList1.get(0).getTotalCost()).sorted((x, y) -> Integer.compare(y.getRatings(), x.getRatings())).collect(Collectors.toList());
+
+        return hotelList2.get(0);
+    }
+
+    Hotel getBestRatedHotel() {
+        return hotelList.stream().sorted((x, y) -> Integer.compare(y.getRatings(), x.getRatings())).collect(Collectors.toList()).get(0);
+    }
+	
 
 	long getNumberOfDays(LocalDate checkInDate, LocalDate checkOutDate) {
 		int totalDays = (int) checkInDate.datesUntil(checkOutDate).count();
